@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://TestingStuff/SwitchCams/SwapCams.gd" type="Script" id=1]
+[ext_resource path="res://TestingStuff/SwitchCams/main.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleMesh" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SphereMesh" id=3]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="Capsule" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.68418, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Cube" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.46922, 0.0170035, 3.08719 )
+mesh = SubResource( 2 )
+skeleton = NodePath("../Capsule")
+material/0 = null
+
+[node name="Sphere" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70925, 0, -2.98268 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Cameras" type="Position3D" parent="."]
+script = ExtResource( 1 )
+
+[node name="Cam1" type="Camera" parent="Cameras"]
+transform = Transform( 0.737313, -0.457785, 0.496792, 0, 0.735388, 0.677646, -0.675552, -0.499637, 0.542211, 4.87345, 5.10047, 6.87978 )
+
+[node name="Cam2" type="Camera" parent="Cameras"]
+transform = Transform( -0.703655, -0.373127, 0.604687, 0, 0.851022, 0.52513, -0.710542, 0.369511, -0.598826, 4.3921, 4.07346, -6.89616 )
+
+[node name="Cam3" type="Camera" parent="Cameras"]
+transform = Transform( 0.197161, 0.368935, -0.908303, 0, 0.926489, 0.376321, 0.980371, -0.0741959, 0.182668, -8.39457, 4.72883, 0 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotateLeft" type="Button" parent="UI"]
+margin_left = 32.0
+margin_top = 283.0
+margin_right = 110.0
+margin_bottom = 355.0
+text = "Rotate left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RotateRight" type="Button" parent="UI"]
+margin_left = 902.0
+margin_top = 296.0
+margin_right = 988.0
+margin_bottom = 368.0
+text = "Rotate right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI"]
+margin_right = 50.0
+margin_bottom = 20.0
+text = "Can Nr"
+
+[connection signal="pressed" from="UI/RotateLeft" to="." method="rotate_cam_left"]
+[connection signal="pressed" from="UI/RotateRight" to="." method="rotate_cam_right"]

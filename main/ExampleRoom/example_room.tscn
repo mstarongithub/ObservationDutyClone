@@ -1,0 +1,185 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://main/ExampleRoom/HoverUpDown.gd" type="Script" id=1]
+[ext_resource path="res://BlenderExports/BasicSofa.glb" type="PackedScene" id=2]
+[ext_resource path="res://BlenderExports/3dRoomWallsBasic.glb" type="PackedScene" id=3]
+[ext_resource path="res://main/ExampleRoom/main.gd" type="Script" id=4]
+[ext_resource path="res://main/ExampleRoom/rotate_on_x.gd" type="Script" id=5]
+[ext_resource path="res://main/ExampleRoom/fuckoff_and_hide.gd" type="Script" id=6]
+[ext_resource path="res://main/ExampleRoom/SwapCams.gd" type="Script" id=7]
+[ext_resource path="res://main/ExampleRoom/UI_main.gd" type="Script" id=8]
+[ext_resource path="res://MiniObjects/RadioButton.tscn" type="PackedScene" id=9]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="place1" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20 )
+
+[node name="3dRoomWallsBasic" parent="place1" instance=ExtResource( 3 )]
+
+[node name="SpotLight" type="SpotLight" parent="place1"]
+transform = Transform( -0.0342018, 0.274772, -0.960901, 0, 0.961464, 0.274933, 0.999415, 0.00940319, -0.0328838, -17.0045, 10.1554, -0.32225 )
+light_energy = 5.0
+light_indirect_energy = 5.0
+spot_range = 6.5754
+spot_angle = 56.8436
+
+[node name="BasicSofa" parent="place1" groups=["hiding_object"] instance=ExtResource( 2 )]
+transform = Transform( -0.743763, 0, -0.668443, 0, 1, 0, 0.668443, 0, -0.743763, 3.49446, 1.15773, -4.35472 )
+script = ExtResource( 6 )
+
+[node name="BasicSofa2" parent="place1" groups=["rotating_object"] instance=ExtResource( 2 )]
+transform = Transform( -0.498064, 0, 0.86714, 0, 1, 0, -0.86714, 0, -0.498064, 3.96938, 1.4969, 5.00383 )
+script = ExtResource( 5 )
+rotation_speed = 7.5
+
+[node name="BasicSofa3" parent="place1" groups=["hovering_objects"] instance=ExtResource( 2 )]
+transform = Transform( 0.819062, 0, 0.573705, 0, 1, 0, -0.573705, 0, 0.819062, -4.09597, 4.7948, 3.85755 )
+script = ExtResource( 1 )
+hover_height = 0.56
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="place2" type="Position3D" parent="."]
+transform = Transform( -0.999963, 0, -0.00858693, 0, 1, 0, 0.00858693, 0, -0.999963, -42.555, 0, 20.2881 )
+
+[node name="3dRoomWallsBasic" parent="place2" instance=ExtResource( 3 )]
+
+[node name="SpotLight" type="SpotLight" parent="place2"]
+transform = Transform( -0.0342018, 0.274772, -0.960901, 0, 0.961464, 0.274933, 0.999415, 0.00940319, -0.0328838, -17.0045, 10.1554, -0.32225 )
+light_energy = 5.0
+light_indirect_energy = 5.0
+spot_range = 6.5754
+spot_angle = 56.8436
+
+[node name="BasicSofa" parent="place2" groups=["hiding_object"] instance=ExtResource( 2 )]
+transform = Transform( 0.759283, 0, -0.650761, 0, 1, 0, 0.650761, 0, 0.759283, -3.59216, 1.15773, -3.55109 )
+script = ExtResource( 6 )
+
+[node name="BasicSofa2" parent="place2" groups=["rotating_object"] instance=ExtResource( 2 )]
+transform = Transform( -0.498064, 0, 0.86714, 0, 1, 0, -0.86714, 0, -0.498064, 3.96938, 1.4969, 5.00383 )
+script = ExtResource( 5 )
+rotation_speed = 7.5
+
+[node name="BasicSofa3" parent="place2" groups=["hovering_objects"] instance=ExtResource( 2 )]
+transform = Transform( 0.819062, -0.541231, 0.190279, 0, 0.331667, 0.943396, -0.573705, -0.7727, 0.271656, -4.09597, 4.7948, 3.85755 )
+script = ExtResource( 1 )
+hover_height = 0.56
+
+[node name="Cameras" type="Position3D" parent="."]
+script = ExtResource( 7 )
+
+[node name="Room1" type="Camera" parent="Cameras"]
+transform = Transform( -0.390771, 0.341063, -0.85497, -0.00405586, 0.928176, 0.37212, 0.920479, 0.148881, -0.361321, 7.3135, 8.97114, 14.5865 )
+current = true
+
+[node name="Room2" type="Camera" parent="Cameras"]
+transform = Transform( 0.382853, -0.342329, 0.858041, -0.00405586, 0.928176, 0.37212, -0.923801, -0.145947, 0.353966, -29.8224, 8.97114, 25.5925 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LastCam" type="Button" parent="UI"]
+margin_left = 25.0
+margin_top = 212.0
+margin_right = 95.0
+margin_bottom = 321.0
+text = "Last Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextCam" type="Button" parent="UI"]
+margin_left = 896.0
+margin_top = 211.0
+margin_right = 970.0
+margin_bottom = 310.0
+text = "Next Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StopEventButtons" type="Control" parent="UI"]
+visible = false
+margin_left = 580.0
+margin_top = 365.0
+margin_right = 1026.0
+margin_bottom = 596.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeSelector" type="GridContainer" parent="UI/StopEventButtons"]
+margin_left = 23.0
+margin_top = 52.0
+margin_right = 406.0
+margin_bottom = 179.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hover" parent="UI/StopEventButtons/TypeSelector" groups=["RadioButtonTypeSelect"] instance=ExtResource( 9 )]
+margin_top = 28.0
+margin_right = 115.0
+margin_bottom = 52.0
+pressed = true
+text = "Hover"
+
+[node name="Rotator" parent="UI/StopEventButtons/TypeSelector" groups=["RadioButtonTypeSelect"] instance=ExtResource( 9 )]
+margin_right = 115.0
+text = "Rotator"
+RadioNr = 1
+
+[node name="Disap" parent="UI/StopEventButtons/TypeSelector" groups=["RadioButtonTypeSelect"] instance=ExtResource( 9 )]
+margin_top = 56.0
+margin_right = 115.0
+margin_bottom = 80.0
+text = "Disapearence"
+RadioNr = 2
+
+[node name="Cancel" type="Button" parent="UI/StopEventButtons"]
+margin_left = 20.0
+margin_top = 189.0
+margin_right = 94.0
+margin_bottom = 217.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="Button" parent="UI/StopEventButtons"]
+margin_left = 326.0
+margin_top = 188.0
+margin_right = 400.0
+margin_bottom = 220.0
+text = "Confirm"
+
+[node name="OpenEventSelector" type="Button" parent="UI"]
+margin_left = 918.0
+margin_top = 569.0
+margin_right = 1009.0
+margin_bottom = 589.0
+text = "Select event"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_spawn_new_event"]
+[connection signal="kill_event" from="UI" to="." method="_on_UI_kill_event"]
+[connection signal="swap_cam" from="UI" to="Cameras" method="_on_UI_swap_cam"]
+[connection signal="pressed" from="UI/LastCam" to="UI" method="button_back_pressed"]
+[connection signal="pressed" from="UI/NextCam" to="UI" method="button_forward_pressed"]
+[connection signal="RadioButtonPressed" from="UI/StopEventButtons/TypeSelector/Hover" to="UI" method="_on_type_switch"]
+[connection signal="RadioButtonPressed" from="UI/StopEventButtons/TypeSelector/Rotator" to="UI" method="_on_type_switch"]
+[connection signal="RadioButtonPressed" from="UI/StopEventButtons/TypeSelector/Disap" to="UI" method="_on_type_switch"]
+[connection signal="pressed" from="UI/StopEventButtons/Cancel" to="UI" method="_on_CancelEvent_pressed"]
+[connection signal="pressed" from="UI/StopEventButtons/Confirm" to="UI" method="_on_ConfirmEvent_pressed"]
+[connection signal="pressed" from="UI/OpenEventSelector" to="UI" method="_on_OpenEventSelector_pressed"]
