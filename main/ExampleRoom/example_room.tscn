@@ -172,6 +172,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Control hints" type="Label" parent="UI"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 80.0
+margin_bottom = 23.0
+text = "Controls:
+Ctrl + F: Activate random event
+Ctrl + C: Stop oldest event"
+
 [connection signal="timeout" from="Timer" to="." method="_on_spawn_new_event"]
 [connection signal="kill_event" from="UI" to="." method="_on_UI_kill_event"]
 [connection signal="swap_cam" from="UI" to="Cameras" method="_on_UI_swap_cam"]

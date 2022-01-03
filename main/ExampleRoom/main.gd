@@ -33,10 +33,12 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("force_activate_interaction"):
-		print("Forced activation")
+		if Engine.editor_hint:
+			print("Forced activation")
 		activate_random_object()
 	elif Input.is_action_just_pressed("clear_oldest_interaction"):
-		print("Force deactivating an event")
+		if Engine.editor_hint:
+			print("Force deactivating an event")
 		if len(active_objects["hovers"]) > 0:
 			var obj = active_objects["hovers"].pop_front()
 			obj.reset()
@@ -50,7 +52,8 @@ func _process(_delta: float) -> void:
 			obj.reset()
 			active_objects_count -= 1
 		else:
-			print("Nothing to deactivate")
+			if Engine.editor_hint:
+				print("Nothing to deactivate")
 
 
 func list_select_random(list):
@@ -68,7 +71,8 @@ func dict_select_random_key(dict: Dictionary):
 
 func activate_random_object():
 	if active_objects_count == all_possible_events_count:
-		print("Max events active")
+		if Engine.editor_hint:
+			print("Max events active")
 		return
 
 	var event_key = dict_select_random_key(potential_objects) # Choose event type
