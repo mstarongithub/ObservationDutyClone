@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main/SplashScreens/Death.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="You died" type="Label" parent="."]
+margin_left = 299.0
+margin_top = 137.0
+margin_right = 413.0
+margin_bottom = 151.0
+rect_scale = Vector2( 4, 4 )
+text = "You died. Unlucky"
+
+[node name="EventsCleared" type="Label" parent="."]
+margin_left = 356.0
+margin_top = 242.0
+margin_right = 537.0
+margin_bottom = 256.0
+rect_scale = Vector2( 2, 2 )
+text = "You cleared {{count}} events"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="Button" parent="."]
+margin_left = 467.0
+margin_top = 323.0
+margin_right = 615.0
+margin_bottom = 343.0
+text = "Return to title screen"
+
+[connection signal="pressed" from="MainMenu" to="." method="_on_MainMenu_pressed"]

@@ -8,18 +8,49 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Position3D",
+"class": "BaseRoom",
+"language": "GDScript",
+"path": "res://main/BaseRoom/Room.gd"
+}, {
+"base": "Control",
+"class": "BaseUI",
+"language": "GDScript",
+"path": "res://main/BaseRoom/UI.gd"
+}, {
+"base": "Position3D",
+"class": "GameRoom",
+"language": "GDScript",
+"path": "res://main/ExampleRoom/room.gd"
+}, {
+"base": "CheckBox",
+"class": "RadioButton",
+"language": "GDScript",
+"path": "res://MiniObjects/RadioButton.gd"
+}, {
+"base": "Control",
+"class": "UI",
+"language": "GDScript",
+"path": "res://main/ExampleRoom/UI_main.gd"
+} ]
+_global_script_class_icons={
+"BaseRoom": "",
+"BaseUI": "",
+"GameRoom": "",
+"RadioButton": "",
+"UI": ""
+}
+
 [application]
 
 config/name="Observation Duty Clone"
-run/main_scene="res://main/ExampleRoom/example_room.tscn"
+run/main_scene="res://main/SplashScreens/Start.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-RestHandler="*res://addons/github-integration/scenes/RestHandler.tscn"
+Global="*res://main/global.gd"
 
 [editor_plugins]
 

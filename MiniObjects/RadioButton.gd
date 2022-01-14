@@ -1,5 +1,8 @@
 extends CheckBox
 
+class_name RadioButton
+
+
 export var RadioNr: int = 0
 
 var RadioGroupName: String = ""

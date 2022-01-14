@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main/SplashScreens/start.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = 389.0
+margin_top = 133.0
+margin_right = 457.0
+margin_bottom = 147.0
+rect_scale = Vector2( 3, 3 )
+text = "Game title"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+margin_left = 411.0
+margin_top = 235.0
+margin_right = 570.0
+margin_bottom = 457.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="StartGame" type="Button" parent="MainMenu"]
+margin_right = 159.0
+margin_bottom = 20.0
+text = "Start game"
+
+[node name="Tutorial" type="Button" parent="MainMenu"]
+margin_top = 24.0
+margin_right = 159.0
+margin_bottom = 44.0
+disabled = true
+text = "Tutorial"
+
+[node name="Settings" type="Button" parent="MainMenu"]
+margin_top = 48.0
+margin_right = 159.0
+margin_bottom = 68.0
+disabled = true
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MainMenu"]
+margin_top = 72.0
+margin_right = 159.0
+margin_bottom = 92.0
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 411.0
+margin_top = 235.0
+margin_right = 570.0
+margin_bottom = 420.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ExampleRoomOld" type="Button" parent="LevelSelect"]
+margin_right = 159.0
+margin_bottom = 20.0
+text = "Old example room"
+
+[node name="ExampleRoomNew" type="Button" parent="LevelSelect"]
+margin_top = 24.0
+margin_right = 159.0
+margin_bottom = 44.0
+text = "New example room"
+
+[node name="Back" type="Button" parent="LevelSelect"]
+margin_top = 48.0
+margin_right = 159.0
+margin_bottom = 68.0
+text = "Back"
+
+[connection signal="pressed" from="MainMenu/StartGame" to="." method="_main_to_level"]
+[connection signal="pressed" from="MainMenu/Quit" to="." method="_quit"]
+[connection signal="pressed" from="LevelSelect/ExampleRoomOld" to="." method="_start_old_example"]
+[connection signal="pressed" from="LevelSelect/ExampleRoomNew" to="." method="_start_new_example"]
+[connection signal="pressed" from="LevelSelect/Back" to="." method="_level_to_main"]

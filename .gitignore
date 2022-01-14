@@ -7,3 +7,5 @@ build/
 lib/
 *.pck
 *.x86_64
+export_presets.cfg
+export_presets.cfg

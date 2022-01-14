@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://main/SplashScreens/Victory.gd" type="Script" id=1]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="YouWon" type="Label" parent="."]
+margin_left = 305.0
+margin_top = 73.0
+margin_right = 412.0
+margin_bottom = 87.0
+rect_scale = Vector2( 4, 4 )
+text = "You won. Happy?"
+
+[node name="EventsCleared" type="Label" parent="."]
+margin_left = 346.0
+margin_top = 164.0
+margin_right = 503.0
+margin_bottom = 178.0
+rect_scale = Vector2( 2, 2 )
+text = "Events cleared: {{count}}"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnButton" type="Button" parent="."]
+margin_left = 483.0
+margin_top = 254.0
+margin_right = 537.0
+margin_bottom = 274.0
+text = "Return"
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_ReturnButton_pressed"]

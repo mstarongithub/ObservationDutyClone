@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://BlenderExports/BasicSofa.glb" type="PackedScene" id=1]
+[ext_resource path="res://BlenderExports/3dRoomWallsBasic.glb" type="PackedScene" id=2]
+[ext_resource path="res://MiniObjects/RedCube.tscn" type="PackedScene" id=3]
+[ext_resource path="res://main/BaseRoom/BaseRoom.tscn" type="PackedScene" id=4]
+[ext_resource path="res://main/EventScripts/hover.gd" type="Script" id=5]
+[ext_resource path="res://main/EventScripts/rotate_x.gd" type="Script" id=6]
+[ext_resource path="res://main/EventScripts/hide.gd" type="Script" id=7]
+
+[node name="Room1" instance=ExtResource( 4 )]
+
+[node name="Camera" parent="." index="0"]
+transform = Transform( -0.0159865, 0.361334, -0.932299, 0, 0.932418, 0.361381, 0.999872, 0.00577722, -0.0149061, -15.0678, 7.99025, 1.55273 )
+
+[node name="3dRoomWallsBasic" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="Hover1" parent="." index="2" groups=["hovering"] instance=ExtResource( 1 )]
+transform = Transform( 0.840831, 0, -0.541297, 0, 1, 0, 0.541297, 0, 0.840831, -5.7872, 1.66928, -5.15177 )
+script = ExtResource( 5 )
+
+[node name="Hide1" parent="." index="3" groups=["hiding"] instance=ExtResource( 1 )]
+transform = Transform( -0.999968, -0.00737137, 0.00309183, 0, 0.386791, 0.922167, -0.00799353, 0.922138, -0.386779, 2.58059, 5.22642, -5.97969 )
+script = ExtResource( 7 )
+
+[node name="Rotate1" parent="." index="4" groups=["rotating"] instance=ExtResource( 1 )]
+transform = Transform( -0.414106, 0, -0.910229, 0, 1, 0, 0.910229, 0, -0.414106, -0.751768, 0.715979, -2.85415 )
+script = ExtResource( 6 )
+
+[node name="Hide2" parent="." index="5" groups=["hiding"] instance=ExtResource( 3 )]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.08233, 1.91867 )
+script = ExtResource( 7 )

@@ -1,0 +1,190 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://main/ExampleRoom/UI_main.gd" type="Script" id=1]
+[ext_resource path="res://main/BaseRoom/base.gd" type="Script" id=2]
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="NewEventTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "Set by script"
+}
+
+[node name="DeathTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+__meta__ = {
+"_editor_description_": "Set by script"
+}
+
+[node name="VictoryTimer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[node name="UI" type="Control" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LastCam" type="Button" parent="UI"]
+margin_left = 25.0
+margin_top = 212.0
+margin_right = 95.0
+margin_bottom = 321.0
+text = "Last Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NextCam" type="Button" parent="UI"]
+margin_left = 896.0
+margin_top = 211.0
+margin_right = 970.0
+margin_bottom = 310.0
+text = "Next Cam"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StopEventButtons" type="Control" parent="UI"]
+visible = false
+margin_left = 580.0
+margin_top = 365.0
+margin_right = 1026.0
+margin_bottom = 596.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoomSelector" type="HBoxContainer" parent="UI/StopEventButtons"]
+margin_right = 409.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypeSelector" type="GridContainer" parent="UI/StopEventButtons"]
+margin_left = 23.0
+margin_top = 52.0
+margin_right = 406.0
+margin_bottom = 179.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="UI/StopEventButtons"]
+margin_left = 20.0
+margin_top = 189.0
+margin_right = 94.0
+margin_bottom = 217.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Confirm" type="Button" parent="UI/StopEventButtons"]
+margin_left = 326.0
+margin_top = 188.0
+margin_right = 400.0
+margin_bottom = 220.0
+text = "Confirm"
+
+[node name="OpenEventSelector" type="Button" parent="UI"]
+margin_left = 918.0
+margin_top = 569.0
+margin_right = 1009.0
+margin_bottom = 589.0
+text = "Select event"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control hints" type="Label" parent="UI"]
+margin_left = 40.0
+margin_top = 9.0
+margin_right = 80.0
+margin_bottom = 23.0
+text = "Controls:
+Ctrl + F: Activate random event"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeathWarning" type="Label" parent="UI"]
+visible = false
+margin_left = 348.0
+margin_top = 126.0
+margin_right = 509.0
+margin_bottom = 157.0
+rect_scale = Vector2( 2, 2 )
+text = "Too many events active.
+Death countdown started"
+
+[node name="Submitting" type="Button" parent="UI"]
+visible = false
+margin_left = 918.0
+margin_top = 569.0
+margin_right = 1009.0
+margin_bottom = 589.0
+disabled = true
+text = "Submitting"
+
+[node name="SubmitTimer" type="Timer" parent="UI"]
+one_shot = true
+__meta__ = {
+"_editor_description_": "Set by script"
+}
+
+[node name="SucessfulDeactivation" type="Label" parent="UI"]
+visible = false
+margin_left = 413.0
+margin_top = 175.0
+margin_right = 504.0
+margin_bottom = 189.0
+rect_scale = Vector2( 2, 2 )
+text = "Anomaly fixed"
+
+[node name="Timer" type="Timer" parent="UI/SucessfulDeactivation"]
+one_shot = true
+
+[node name="FailedDeactivation" type="Label" parent="UI"]
+visible = false
+margin_left = 374.0
+margin_top = 168.0
+margin_right = 506.0
+margin_bottom = 182.0
+rect_scale = Vector2( 2, 2 )
+text = "Failed to fix anomaly"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="UI/FailedDeactivation"]
+one_shot = true
+
+[node name="RoomName" type="Label" parent="UI"]
+margin_left = 579.0
+margin_top = 39.0
+margin_right = 619.0
+margin_bottom = 53.0
+
+[connection signal="timeout" from="NewEventTimer" to="." method="_on_spawn_new_event"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
+[connection signal="timeout" from="VictoryTimer" to="." method="_on_VictoryTimer_timeout"]
+[connection signal="kill_event" from="UI" to="." method="_on_UI_kill_event"]
+[connection signal="swap_cam" from="UI" to="." method="_on_UI_swap_cam"]
+[connection signal="pressed" from="UI/LastCam" to="UI" method="button_back_pressed"]
+[connection signal="pressed" from="UI/NextCam" to="UI" method="button_forward_pressed"]
+[connection signal="pressed" from="UI/StopEventButtons/Cancel" to="UI" method="_on_CancelEvent_pressed"]
+[connection signal="pressed" from="UI/StopEventButtons/Confirm" to="UI" method="_on_ConfirmEvent_pressed"]
+[connection signal="pressed" from="UI/OpenEventSelector" to="UI" method="_on_OpenEventSelector_pressed"]
+[connection signal="timeout" from="UI/SubmitTimer" to="UI" method="_on_SubmitTimer_timeout"]
+[connection signal="timeout" from="UI/SucessfulDeactivation/Timer" to="UI" method="_on_SucessfulTimer_timeout"]
+[connection signal="timeout" from="UI/FailedDeactivation/Timer" to="UI" method="_on_FailedTimer_timeout"]
